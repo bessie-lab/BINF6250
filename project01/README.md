@@ -1,5 +1,9 @@
 # Introduction
-The program reads a variant call format file and creates a dictionary used to count the number of times a disease occurs
+The program reads a variant call format (vcf) file and creates a dictionary to count the number of times a disease occurs. The disease is only added to the counter if it has met a few requirements:
+  - There has to be an AF_EXAC value and it must be less than 0.0001 (this means the variant is rare)
+If this condition is met, we report the disease to the tracker and it's added to our count dictionary.
+
+The result is this code is a printed dictionary with the list of reported diseases and how many times they occurred in rare variants. 
 
 # Pseudocode
 
@@ -9,7 +13,7 @@ Parse line function
 2) Clean and split the argument
 3) grab the info column
 2) Use conditionals to check if AF_EXAC is present
-3) create a dictionary and convert it to a float and check if the < 0.001 condition is met
+3) create a dictionary and convert it to a float and check if the < 0.0001 condition is met
 4) determine rarity of the disease using conditionals and return the list 
 
 Read line function
