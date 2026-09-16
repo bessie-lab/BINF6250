@@ -1,11 +1,16 @@
 # Introduction
-Description of the project
+The program reads a variant call format file and creates a dictionary used to count the number of times a disease occurs
 
 # Pseudocode
 
 ```
 Parse line function 
-1)
+1) The function takes a string as an argument
+2) Clean and split the argument
+3) grab the info column
+2) Use conditionals to check if AF_EXAC is present
+3) create a dictionary and convert it to a float and check if the < 0.001 condition is met
+4) determine rarity of the disease using conditionals and return the list 
 
 Read line function
 1) Create an empty dictionary for counting disease occurrence
@@ -33,7 +38,7 @@ Read line function
 I learned how to create a repo, create a branch, and work on that branch collaboratively with a teammate. This was really useful for learning how to isolate my work on a branch and I can see how I could do work independent of this collaboration on a different branch and why that would be useful. This was a really helpful exercise in becoming more comfortable with collaborative programming utilizing Github. 
 
 ## Other member
-Other members' reflections on the project
+I learned how to fork a teammate's repository and how to commit changes and pull requests on Github. This was a great experience as it taught me on how we can work on the same program collaboratively . I also learnt how to open vcf files corrrectly and remove the tabs and splits in them in my code.
 
 # Generative AI Appendix
-As per the syllabus
+Used Claude AI to debug code in the parse_file function
