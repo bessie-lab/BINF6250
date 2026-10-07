@@ -123,14 +123,14 @@ RETURN the final PFM
 ```
 
 # Successes
-Description of the team's learning points
+We successfully, completed the initialisation stage and created a convergence loop and built a PFM from it that we used to determine the PWM.
 
 # Struggles
-Description of the stumbling blocks the team experienced
+Writing the gibbs sampling function was a great learning curve for everyone in our group .Although, we managed to finish writing the program we had challenges in deciding whose ideas to go with in writing the code we all had different views of tackling the problem . We also struggled with writing the code block for determining the final PFM it was really challenging for us how to incorparate the reverse and finding the probability .
 
 # Personal Reflections
 ## Group Leader
-Group leader's reflection on the project
+Working on this project helped me understand a lot of things that did not make any sense to me previously when writing code for programs . I finally understood how important it is to understand the biological concept behind any program before writing the code like what is the program trying to achieve or solve. I learnt why it is important to approach every step in parts it makes it easier to debug and and find problems . I now have a full understanding of how to find motifs in a DNA sample. This was my first time being a group leader it was a great learning curve for me in terms of comparing and merging pull requests. Working with Aamna and Matthew made it a whole lot more easier we would help each other understand concepts and they were very collaborative, however we also had meeting time constraints due to time zone differences. It was also my first time using modules like random number generator and numpy and I gained some valuable experience of their usage through this project.
 
 ## Other member
 # Aamna
