@@ -126,7 +126,7 @@ RETURN the final PFM
 We successfully, completed the initialisation stage and created a convergence loop and built a PFM from it that we used to determine the PWM.
 
 # Struggles
-Writing the gibbs sampling function was a great learning curve for everyone in our group .Although, we managed to finish writing the program we had challenges in deciding whose ideas to go with in writing the code we all had different views of tackling the problem . We also struggled with writing the code block for determining the final PFM it was really challenging for us how to incorparate the reverse and finding the probability .
+Writing the gibbs sampling function was a great learning curve for everyone in our group .Although, we managed to finish writing the program we had challenges in deciding whose ideas to go with in writing the code we all had different views of tackling the problem . We also struggled with writing the code block for determining the final PFM it was really challenging for us how to incorparate the reverse complement function and finding the probability .
 
 # Personal Reflections
 ## Group Leader
