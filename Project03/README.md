@@ -110,8 +110,10 @@ START convergence loop:
         UPDATE motifs[i] with the sampled motif
 
 
-        CHECK if motifs have converged
-
+        CHECK if motifs have converged after some # of iterations
+            USE pfm_ic() from motif_ops.py
+                if pfm_ic(current pfm) ~= pfm_ic(old pfm)
+                    converged 
 
 BUILD the final PFM using all motifs
 
@@ -125,8 +127,12 @@ RETURN the final PFM
 # Successes
 We successfully, completed the initialisation stage and created a convergence loop and built a PFM from it that we used to determine the PWM.
 
+One major success of this team was our ability to collaborate effectively. Despite time zone conflicts, we met multiple time as a full group and as groups of two when one person was unavailable. We also communicated regularly over teams. Despite our code not being finished, our pseudocode clearly conveys the product we intended to make. As it stands now, the code does successfully identify the Shine-Delgarno sequence. Due to seqlogo not working properly for us, this was determined by printing out the final motif list. This is exactly what the video lecture states would happen if the code does not consider reverse complementarity, which ours does not. Despite its shortcomings, we are happy that the code we have works as we intend it to.
+
 # Struggles
 Writing the gibbs sampling function was a great learning curve for everyone in our group .Although, we managed to finish writing the program we had challenges in deciding whose ideas to go with in writing the code we all had different views of tackling the problem . We also struggled with writing the code block for determining the final PFM it was really challenging for us how to incorparate the reverse complement function and finding the probability .
+
+We had many struggles in completing this project. First, it took a while to conceptually understand what we needed to do. Once we got to the coding process, we were hung up for a long time on the probabilistic kmer selection step. Running the code also came with environmental/set up challenges for some, which slowed debugging. These issues compounded and prevented us from having time to  implement a convergence test using the pfm_ic function or modify our code to consider reverse complementarity. Furthermore, we did not get to the “Challenge Yourself” section, and we could not get seqlogo to work.
 
 # Personal Reflections
 ## Group Leader
@@ -139,6 +145,13 @@ This project was definitely harder for me because there were more pieces that ha
 The scoring was another part that I liked working through. A group member first used a simple approach of adding 10 to the scores to make them positive for the weighted selection, which gave us something we could actually run and test. I thought that was a clever way to get the algorithm moving while we were still figuring out the scoring. From there, we changed it to keep the log2 scores and use np.exp2() to convert them into weights. Being able to run the updated version and see the motifs mostly have the shine-dalgarno motif was a good check that we were moving in the right direction.
 
 I also feel a lot more comfortable working in notebooks and with gitHub now. I can move around the notebook pretty quickly, add or remove cells, and test one small change without feeling like I am going to break everything. I actually really like how interactive that makes the debugging process. The biggest challenge this time was probably the timing. Even though we had two weeks for the project, between the different time zones and finding a meeting time that worked for everyone, it still did not feel like a lot of time. I wish I could have had a few hours each day to work on it because I think having more time to test different things and talk through the algorithm would have helped a lot. Overall, I really enjoyed working on this and I feel like it tested me in so many different ways. I hope I can come back to this at some point and finish it off.
+
+Jake (Matthew):
+
+I found this project to be difficult both conceptually and technically. Conceptually, despite watching the lecture video released last week, I still don’t understand the forward and reverse strand process. Given the code provided, the sequences going into the motif finder are all from the same strand. It seems to me that because of this the Gibbs sampler should only have to look for one motif (the motif in the forward direction). I see that our code "incorrectly" picks out the Shine-Dalgarno sequence, but I don’t get what’s preventing it from finding the actual motif. Additionally, I struggled a lot trying to figure out how to do the probabilistic kmer selection. Nothing I tried worked. 
+
+On the technical side, I also struggled a lot getting the code to even run. Seqlogo never worked and gave an error when called to plot. Additionally, I had to do a lot of troubleshooting to get it to import into the script. It seems like seqlogo relies on an old version of a package called setuptools. I had to downgrade the setuptools in my environment to get seqlogo to import. Finally, to get the data readers to work, I had to remove the .gz extensions from the file paths specified in the provided code. I’m happy the main loop of the Gibbs sampling function works and identifies the Shine-Delgarno sequence. 
+
 
 # Generative AI Appendix
 As per the syllabus
