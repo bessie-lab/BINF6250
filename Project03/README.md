@@ -132,10 +132,12 @@ Writing the gibbs sampling function was a great learning curve for everyone in o
 
 # Personal Reflections
 ## Group Leader
+
+Bessie: 
 Working on this project helped me understand a lot of things that did not make any sense to me previously when writing code for programs . I finally understood how important it is to understand the biological concept behind any program before writing the code like what is the program trying to achieve or solve. I learnt why it is important to approach every step in parts it makes it easier to debug and and find problems . I now have a full understanding of how to find motifs in a DNA sample. This was my first time being a group leader it was a great learning curve for me in terms of comparing and merging pull requests. Working with Aamna and Matthew made it a whole lot more easier we would help each other understand concepts and they were very collaborative, however we also had meeting time constraints due to time zone differences. It was also my first time using modules like random number generator and numpy and I gained some valuable experience of their usage through this project.I am still learning how to do the last parts of the function
 
 ## Other member
-# Aamna
+Aamna:
 This project was definitely harder for me because there were more pieces that had to work together. I found it harder to tell where a problem was comign from, so breaking it into smaller pieces was especially important this time. Marcus reiterated to break big problems into smaller ones, so we tried to approached this project differently from the start. Instead of trying to get the whole sampler finished and then debugging it, we broke it into smaller pieces and wanted to get an understanding of each part before moving on. That was especially helpful with the reverse complement. It had us stuck for a while and we knew it was something we would eventually need to include, but we decided to leave it out for now so we could actually run the main part of the sampler and see what was working before adding this piece.
 
 The scoring was another part that I liked working through. A group member first used a simple approach of adding 10 to the scores to make them positive for the weighted selection, which gave us something we could actually run and test. I thought that was a clever way to get the algorithm moving while we were still figuring out the scoring. From there, we changed it to keep the log2 scores and use np.exp2() to convert them into weights. Being able to run the updated version and see the motifs mostly have the shine-dalgarno motif was a good check that we were moving in the right direction.
