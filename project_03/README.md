@@ -1,1 +1,155 @@
+# Introduction
+In this project, we implemented a Gibbs sampling algorithm to discover DNA motifs from a collection of nucleotide sequences. Gibbs sampling is a probabilistic method that iteratively updates candidate motif positions based on how well they match a Position Weight Matrix (PWM) constructed from the other sequences.The algorithm begins by randomly selecting a k-mer from each sequence. During each iteration, one sequence is temporarily excluded, and the remaining candidate motifs are used to construct a Position Frequency Matrix (PFM) and Position Weight Matrix (PWM). The PWM is then used to score every possible k-mer in the excluded sequence. These scores are converted into probabilities, allowing the algorithm to probabilistically select a new motif position. Repeating this process allows the motif predictions to gradually converge toward a shared sequence pattern.This project demonstrates the use of Python, NumPy, probability-based sampling, PFMs, PWMs, and sequence analysis to solve a biological pattern-discovery problem. The resulting motif can also be visualized using a sequence logo to examine the nucleotide conservation at each position.
 
+# Pseudocode
+def GibbsMotifFinder (seqs, k, seed=None):
+    '''
+    Function to find a pfm from a list of strings using a Gibbs sampler
+    
+    Args: 
+        seqs (str list): a list of sequences, not necessarily in same lengths
+        k (int): the length of motif to find
+        seed (int, default=None): seed for np.random
+
+    Returns:
+        pfm (numpy array): dimensions are 4xlength
+    '''
+    # Use rng to make random samples/selections/numbers
+    # Example: randint = rng.integer(1, 10)
+    random.seed(seed)
+    rng = np.random.default_rng(seed)
+
+    pass
+
+```
+GibbsMotifFinder(seqs, k, seed)
+
+START with the input sequences (seqs) and motif length k
+
+SET the random seed
+
+CREATE an empty list called motifs
+    # stores one motif for each sequence
+
+
+INITIALIZE motifs:
+
+    LOOP through each sequence in seqs:
+
+        RANDOMLY select a valid k-mer position
+
+        RANDOMLY select a strand (+ or -)
+
+        IF the reverse strand is selected:
+            GET the reverse complement of the k-mer
+
+        ADD the selected k-mer to motifs
+
+
+START convergence loop:
+
+    REPEAT until motifs stop changing OR 10,000 iterations are reached:
+
+
+        RANDOMLY select one sequence index i
+
+        REMOVE motifs[i] temporarily from motifs
+
+
+        BUILD a PFM using all motifs except motifs[i]
+
+            USE build_pfm() from motif_ops.py
+
+
+        BUILD a PWM from the PFM
+
+            USE build_pwm() from motif_ops.py
+
+
+        CREATE an empty list called candidates
+
+            # stores possible k-mers, scores, and strand information
+
+
+        LOOP through every possible k-mer position in seqs[i]:
+
+
+            GET the forward k-mer
+
+            GET the reverse complement of the k-mer
+
+                USE reverse_complement() from seq_ops.py
+
+
+            SCORE the forward k-mer using the PWM
+
+                USE score_kmer() from motif_ops.py
+
+
+            SCORE the reverse complement using the PWM
+
+                USE score_kmer() from motif_ops.py
+
+
+            STORE the k-mer, score, position, and strand
+            in candidates
+
+
+        CONVERT the candidate scores into probabilities
+
+
+        RANDOMLY SAMPLE one candidate using the probabilities
+
+            # higher scoring candidates have a higher chance
+            # but do not select the maximum score directly
+
+
+        GET the sampled k-mer and strand information
+
+
+        UPDATE motifs[i] with the sampled motif
+
+
+        CHECK if motifs have converged after some # of iterations
+            USE pfm_ic() from motif_ops.py
+                if pfm_ic(current pfm) ~= pfm_ic(old pfm)
+                    converged 
+
+BUILD the final PFM using all motifs
+
+    USE build_pfm() from motif_ops.py
+
+
+RETURN the final PFM
+
+```
+
+# Successes
+We successfully, completed the initialisation stage and created a convergence loop and built a PFM from it that we used to determine the PWM.One major success of this team was our ability to collaborate effectively. Despite time zone conflicts, we met multiple time as a full group and as groups of two when one person was unavailable. We also communicated regularly over teams. Despite our code not being finished, our pseudocode clearly conveys the product we intended to make. As it stands now, the code does successfully identify the Shine-Delgarno sequence. Due to seqlogo not working properly for us, this was determined by printing out the final motif list. This is exactly what the video lecture states would happen if the code does not consider reverse complementarity, which ours does not. Despite its shortcomings, we are happy that the code we have works as we intend it to.
+
+# Struggles
+Writing the gibbs sampling function was a great learning curve for everyone in our group .We had many struggles in completing this project. First, it took a while to conceptually understand what we needed to do. Then we had challenges in deciding whose ideas to go with in writing the code we all had different views of tackling the problem .When we got to the coding process, we were hung up for a long time on the probabilistic kmer selection step. Running the code also came with environmental/set up challenges for some, which slowed debugging. These issues compounded and prevented us from having time to  implement a convergence test using the pfm_ic function or modify our code to consider reverse complementarity. Furthermore, we did not get to the “Challenge Yourself” section, and we could not get seqlogo to work.
+
+# Personal Reflections
+## Group Leader
+
+Bessie: 
+Working on this project helped me understand a lot of things that did not make any sense to me previously when writing code for programs . I finally understood how important it is to understand the biological concept behind any program before writing the code like what is the program trying to achieve or solve. I learnt why it is important to approach every step in parts it makes it easier to debug and and find problems . I now have a full understanding of how to find motifs in a DNA sample. This was my first time being a group leader it was a great learning curve for me in terms of comparing and merging pull requests. Working with Aamna and Matthew made it a whole lot more easier we would help each other understand concepts and they were very collaborative, however we also had meeting time constraints due to time zone differences. It was also my first time using modules like random number generator and numpy and I gained some valuable experience of their usage through this project.I am still learning how to do the last parts of the function
+
+## Other member
+Aamna:
+This project was definitely harder for me because there were more pieces that had to work together. I found it harder to tell where a problem was comign from, so breaking it into smaller pieces was especially important this time. Marcus reiterated to break big problems into smaller ones, so we tried to approached this project differently from the start. Instead of trying to get the whole sampler finished and then debugging it, we broke it into smaller pieces and wanted to get an understanding of each part before moving on. That was especially helpful with the reverse complement. It had us stuck for a while and we knew it was something we would eventually need to include, but we decided to leave it out for now so we could actually run the main part of the sampler and see what was working before adding this piece.
+
+The scoring was another part that I liked working through. A group member first used a simple approach of adding 10 to the scores to make them positive for the weighted selection, which gave us something we could actually run and test. I thought that was a clever way to get the algorithm moving while we were still figuring out the scoring. From there, we changed it to keep the log2 scores and use np.exp2() to convert them into weights. Being able to run the updated version and see the motifs mostly have the shine-dalgarno motif was a good check that we were moving in the right direction.
+
+I also feel a lot more comfortable working in notebooks and with gitHub now. I can move around the notebook pretty quickly, add or remove cells, and test one small change without feeling like I am going to break everything. I actually really like how interactive that makes the debugging process. The biggest challenge this time was probably the timing. Even though we had two weeks for the project, between the different time zones and finding a meeting time that worked for everyone, it still did not feel like a lot of time. I wish I could have had a few hours each day to work on it because I think having more time to test different things and talk through the algorithm would have helped a lot. Overall, I really enjoyed working on this and I feel like it tested me in so many different ways. I hope I can come back to this at some point and finish it off.
+
+Jake (Matthew):
+
+I found this project to be difficult both conceptually and technically. Conceptually, despite watching the lecture video released last week, I still don’t understand the forward and reverse strand process. Given the code provided, the sequences going into the motif finder are all from the same strand. It seems to me that because of this the Gibbs sampler should only have to look for one motif (the motif in the forward direction). I see that our code "incorrectly" picks out the Shine-Dalgarno sequence, but I don’t get what’s preventing it from finding the actual motif. Additionally, I struggled a lot trying to figure out how to do the probabilistic kmer selection. Nothing I tried worked. 
+
+On the technical side, I also struggled a lot getting the code to even run. Seqlogo never worked and gave an error when called to plot. Additionally, I had to do a lot of troubleshooting to get it to import into the script. It seems like seqlogo relies on an old version of a package called setuptools. I had to downgrade the setuptools in my environment to get seqlogo to import. Finally, to get the data readers to work, I had to remove the .gz extensions from the file paths specified in the provided code. I’m happy the main loop of the Gibbs sampling function works and identifies the Shine-Delgarno sequence. 
+
+
+# Generative AI Appendix
+As per the syllabus
