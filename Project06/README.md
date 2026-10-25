@@ -11,10 +11,10 @@ def read_fasta(filename: str) -> Dict[str, str]:
     Open the file and read it line by line:
         strip spaces and the newline off the end of the line
         IF the line is empty:
-            #skip it
+            skip it
         IF the line starts with ">":
-            #current_name = last word of the line (i.e. "DM1")
-            #sequences[current_name] = empty string
+            current_name = last word of the line (i.e. "DM1")
+            sequences[current_name] = empty string
         ELSE (it's part of a sequence):
             add the line to the end of sequences[current_name]
 
@@ -47,7 +47,7 @@ def smith_waterman(
     IF smaller_self_score is 0 (only happens if a sequence is empty):
         return 0.0 (avoids dividing by zero)
     
-    Return (raw_score / smaller_self_score) #Note: 1.0 = identical, closer to 0 = less similar
+    Return (raw_score / smaller_self_score) Note: 1.0 = identical, closer to 0 = less similar
 
 def build_distance_matrix(sequences: Dict[str, str]) -> Tuple[np.ndarray, List[str]]:
     ids = list of the sequence names, in file order (i.e. ["DM1", "DM2", ...])
@@ -57,7 +57,7 @@ def build_distance_matrix(sequences: Dict[str, str]) -> Tuple[np.ndarray, List[s
     For each row i from 0 to n-1:
         FOR each column j from i+1 to n-1 (only pairs not yet done; skip the diagonal):
             similarity = smith_waterman (sequence for ids[i], sequence for ids[j])
-            distance = 1 - similarity ***my suggestion for the group because can't produce undefined values and for those highly similar sequences it gives nearly the same distances as -log(similarity) 
+            distance = 1 - similarity
             distance_matrix[i, j] = distance
             distance_matrix[j, i] = distance  (Table is symmetric, so fill both halves)
 
@@ -73,7 +73,7 @@ def neighbor_joining(
         All 20 sequences are used.  The docstring expects 19, note it in README
         Ties in the D* score: the first pair found is kept
         Negative branch lengths: set to 0, differences added to the other branch
-    
+        
     SETUP
     D = copy of distance_matrix (so original table isn't changed)
     current_labels = copy of labels (each starts as just a name, i.e. "DM1")
