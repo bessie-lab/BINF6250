@@ -147,6 +147,8 @@ def neighbor_joining(
 
 
 # Successes
+The notebook reads the FASTA file, builds the distance matrix, runs Neighbor-Joining, and draws the tree. Running
+Run All on the real data set produced a plotted phylogenetic tree with the sequence IDs as leaf labels.Instead of rewriting the alignment, we kept  `cal_score` function from project05 and wrapped it in the `smith_waterman` function that returned a single normalized score between 0 and 1.Dividing the best local score by the score of a perfect match of the shorter sequence meant identical sequences gave a similarity of exactly 1.0, which matched the docstring example and made the conversion to a distance (`1 - similarity`) simple.
 
 # Struggles
 
