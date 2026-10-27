@@ -15,7 +15,7 @@ Draw the tree:the result is written in Newick format and plotted with Biopython 
 - project06.ipynb - notebook with the implementation
 - lafayette_SARS_RT.fasta -input sequences
 
-#Requirements
+# Requirements
 
 Python 3, `numpy`, `matplotlib`, and `biopython`:
 
@@ -144,7 +144,7 @@ def neighbor_joining(
 
 # Results Output
 
-
+![Neighbor-Joining tree of 20 HIV-1 RT sequences](nj_tree.png)
 
 # Successes
 The notebook reads the FASTA file, builds the distance matrix, runs Neighbor-Joining, and draws the tree. Running
