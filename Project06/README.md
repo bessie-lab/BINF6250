@@ -1,7 +1,29 @@
 # BINF6250 - Project 06
 
 # Introduction
+This project builds a phylogenetic tree from a set of reverse transcriptase (RT) protein sequences using a distance-based approach. Pairwise similarity between sequences is measured with the Smith-Waterman local alignment algorithm, and those scores are converted into a distance matrix. The Neighbor-Joining (NJ)algorithm then uses that matrix to build an unrooted tree showing how thesequences relate to each other.Neighbor-Joining was chosen over UPGMA because it does not assume a constant rate of evolution across lineages, so branch lengths can differ between sequences. Smith-Waterman scoring finds the best matching region between twosequences, which suits sequences that vary in length or have diverged in parts.
 
+# How it works
+Read the data:sequences are loaded from a FASTA file(`lafayette_SARS_RT.fasta`).
+Score pairs:every pair of sequences is aligned with Smith-Waterman.The best local score is normalized to a value   between 0 and 1, where 1 means a perfect match.
+Build distances:each similarity is converted to a distance(`distance = 1 - similarity`), giving a symmetric distance matrix.
+Join neighbors:Neighbor-Joining repeatedly merges the pair of nodes with the smallest Q-value and updates the distance matrix until two nodes remain.
+Draw the tree:the result is written in Newick format and plotted with Biopython and Matplotlib.
+
+# Files
+
+- project06.ipynb - notebook with the implementation
+- lafayette_SARS_RT.fasta -input sequences
+
+#Requirements
+
+Python 3, `numpy`, `matplotlib`, and `biopython`:
+
+    pip install numpy matplotlib biopython
+
+# Usage
+
+Place the FASTA file in the same folder as the notebook, open it in VS Code or Jupyter, and choose **Run All**. The final cell reads the sequences, builds the distance matrix, runs Neighbor-Joining, and plots the tree.
 
 # Pseudocode
 def read_fasta(filename: str) -> Dict[str, str]:
@@ -121,6 +143,8 @@ def neighbor_joining(
     Return tree    
 
 # Results Output
+
+
 
 # Successes
 
