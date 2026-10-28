@@ -170,7 +170,8 @@ A near-zero negative branch: DM2's branch length came out as a tiny negative num
 # Reflection and Adaptive Learning
 
 # Personal Reflections
-## Group leader 
+## Group leader
+I could follow the Neighbor-Joining formulas, but I didn't fully understand why subtracting the row sums in the Q-matrix picks out true neighbors instead of just the two closest sequences. I also wasn't sure what it means when the algorithm produces negative branch lengths. I set them to zero so the tree would plot, but that hides the fact that my distances don't fit a perfect tree,and I don't know how much that affects the result. Finally, I converted Smith-Waterman scores into distances using `distance = 1 - normalized score`,and I'm not sure how well that simple formula represents real evolutionary distance.
 
 ## Other member
 
@@ -181,3 +182,4 @@ I'll admit that evolution and phylogeny have never been topics that interest me 
 
 # Generative AI Appendix
 Anthropic Claude Opus 5.5 prompt: "How do I add an phylogenetic tree image result output from my .ipynb file into my README.md file?"
+Claude was also used to adapt the Smith-Waterman function from project05
