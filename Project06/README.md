@@ -5,6 +5,8 @@ This project implements a distance-based phylogenetic tree builder that applies 
 
 All required functionality described in the assignment instructions was completed. The `read_fasta()`, `smith_waterman()`, `build_distance_matrix()`, and `neighbor_joining()` functions were implemented, and the full pipeline runs in under a minute and produces a tree containing all 20 sequences. The Neighbor-Joining implementation was also tested on the 4-sequence example matrix from class, where it recovered the expected branch lengths of 11, 2, 6, 7, and 4.
 
+Although the file name contains "SARS," every sequence header identifies the sequences as Human immunodeficiency virus 1 reverse transcriptase, which matches the assignment instructions. The file name was kept as provided so the notebook runs without changes.
+
 # How it works
 Read the data: sequences are loaded from a FASTA file(`lafayette_SARS_RT.fasta`).
 Score pairs: every pair of sequences is aligned with Smith-Waterman.The best local score is normalized to a value   between 0 and 1, where 1 means a perfect match.
@@ -186,13 +188,17 @@ I really enjoyed working on this project. Ildiko put together very in-depth pseu
 ## Other member: Ildiko Polyak
 The most valuable part of this project for me was comparing our three individual versions of the code. We all started from the same pseudocode, yet the three implementations ended up looking very different: different ways of normalizing the Smith-Waterman score, of shrinking the distance matrix, and of building the Newick string. Running my version side by side with the final group version and confirming they produced identical distance matrices and an identical tree showed me that very different code can implement the same algorithm correctly. Since I'm still a beginner at coding, reading how others solved the same problem taught me techniques I wouldn't have found on my own, like normalizing with a single alignment instead of three and using array operations to resize the matrix. It also showed me how much clear comments matter, code without them took me much longer to understand, even when it was well written.  Justin combined portions from everyone's code for the final program and it was interesting to see his decision process of what makes a program most efficient, yet understandable.  Code efficiency is still something I'm trying to learn more about and it feels like this vauge subjective topic that is developed over time and experience, rather than hardset rules that a beginner can memorize.
 
-I'll admit that evolution and phylogeny have never been topics that interest me much (BO-RING). What did catch my interest was applying the method to HIV reverse transcriptase sequences and comparing viral variants. It was a good lesson that the same algorithm can serve very different biological questions, from evolutionary history to tracking viral strains and drug resistance.  I often get so caught up in the coding that I forget about the biological aspect and this lesson was finally a little interesting and held my attention and refocused why we learn these super hard algorithms in the first place.
+I'll admit that evolution and phylogeny have never been topics that interest me (BO-RING). What did catch my interest was applying the method to HIV reverse transcriptase sequences and comparing viral variants. It was a good lesson that the same algorithm can serve very different biological questions, from evolutionary history to tracking viral strains and drug resistance.  I often get so caught up in the coding that I forget about the biological aspect and this lesson was finally a little interesting and held my attention and refocused why we learn these hard algorithms in the first place.
 
 # Appendix: Generative AI
 Anthropic Claude Opus 5.5 prompt: "How do I add an phylogenetic tree image result output from my .ipynb file into my README.md file?"
+
 Claude was used to adapt the Smith-Waterman function from project05.
+
 Claude was used to create pseudocode from the final program (that had AI help) to compare to starting pseudocode that was human written.  The prompt used: "I've uploaded the starting pseudocode and the final code, now write a final version of pseudocode that reflects the final version of code, so that I can compare starting and final pseudocode."
+
 Claude was asked about how to deal with near zero value branches in distance based phylogeny algorithms.
+
 Claude was used to summarize all of the references provided at the end of the module and then asked the following prompt: "comparing all of the references to the information in the module, are there any parts that might disagree?"
 
 # Appendix: Starting Pseudocode
